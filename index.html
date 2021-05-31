@@ -1,149 +1,72 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Roman/Arabic converter</title>
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
-<style type="text/css">
-body {
-	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
-	background: #42413C;
-	margin: 0;
-	padding: 0;
-	color: #000;
-}
 
-/* ~~ Element/tag selectors ~~ */
-ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
-	padding: 0;
-	margin: 0;
-}
-h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
-	padding-right: 15px;
-	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
-}
-a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
-	border: none;
-}
-/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
-a:link {
-	color: #B2DFEE;
-	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
-}
-a:visited {
-	color: #B2DFEE;
-	text-decoration: underline;
-}
-a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
-	text-decoration: none;
-	color: #000000;
-}
+    <meta charset="UTF-8">
 
-/* ~~ this fixed width container surrounds the other divs ~~ */
-.container {
-	width: 960px;
-	background: #42647F;
-	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
-}
+    <title>Roman/Arabic Converter</title>
 
-/* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
-.header {
-	background: #B2DFEE;
-}
+    <link rel="stylesheet" href="../common/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
 
-/* ~~ This is the layout information. ~~ 
 
-1) Padding is only placed on the top and/or bottom of the div. The elements within this div have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
 
-*/
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
 
-.content {
-	padding: 0px 0;
-	color: #FFF;
-}
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="Timer" />
+    <meta property="og:description"        content="A simple countdown timer." />
+    <meta property="og:image"              content="assets/images/promo.png" />
+    <script src='includes/jquery.min.js'></script>
+    <script src='includes/main.js'></script>
 
-/* ~~ The footer ~~ */
-.footer {
-	padding: 3px 0;
-	background: #B2DFEE;
-}
-
-/* ~~ miscellaneous float/clear classes ~~ */
-.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
-	float: right;
-	margin-left: 8px;
-}
-.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
-	float: left;
-	margin-right: 8px;
-}
-.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
-	clear:both;
-	height:0;
-	font-size: 1px;
-	line-height: 0px;
-}
-.container .footer p a {
-	color: #000000;
-}
--->
-</style>
-
-<script src="web_library.js"></script>
-<script>
-function update_result(form) {
-	
-	var number = form.number_box.value
-	var result = get_result(number.trim().toUpperCase())
-	form.result_box.value = result
-}
-</script></head>
-
+</head>
 <body>
-<div class="container">
-  <div class="header"><!-- end .header -->
-    <a id="top"></a>
-    <h1>Roman/Arabic converter</h1>
-    <p>&nbsp;</p>
-  </div>
-  <div class="content">
-    <h2>Convert between Roman and Arabic (regular) numerals</h2>
-    <p>Type in a number in either system and it'll be converted for you.</p>
-    <div align="center">
-      <table width="635" border="0" cellpadding="3">
-        <tr><form name="roman">
-          <td><p align="center">
-            <label for="number_box"><strong>Input</strong></label>
-            <br />
-            <input type="text" id="number_box" size="28" value="" autofocus="autofocus" onkeyup="update_result(this.form)" style="font-size:16px"/>
-            </p>
-            <p align="center">
-            <label for="result_box"><strong>Result</strong></label>
-            <br />
-            <input type="text" id="result_box" size="28" value="" readonly="readonly" style="font-size:16px"></textarea>
-            </p>
-            </td>
-            </form>
-        </tr>
-        <tr>
-          <td width="239"> <div align="center">            
-            <p><a href="http://en.wikipedia.org/wiki/Arabic_numerals">Arabic numerals</a>: 1 – 4999<br />
-              <a href="http://en.wikipedia.org/wiki/Roman_numerals">Roman numerals</a>: I V X L C D M<br />
-              These can be lowercase.</p>
-          </div></td>
-          
-      </tr>
-      </table></p>
+
+<div id='app'>
+    <img class='hidden' src='https://tools.unfamiliarplace.com/common/assets/images/wood-tabletop.jpg' />
+  
+  <div id='scenePlay'>
+    <div id='header'>
+      <h1>Roman/Arabic Converter</h1>
     </div>
-<h2><!-- end .content --></h2>
+    <div id='main'>
+      <div id='inputPanel'>
+        <input type='text' id='input' placeholder='Type in either system' required='true'></input>
+      </div>
+      <div id='outputPanel'>
+        <div id='output'>
+          <input id='outputText' readonly='true'></input>
+        </div>
+        <div id='buttonPanel'>
+          <button id='btnCopy' title='Copy output' disabled='disabled'><i class="fas fa-copy"></i></button>
+          <button id='btnClear' title='Clear' disabled='disabled'><i class="fas fa-trash"></i></button>
+          <button id='btnSwap' title='Swap' disabled='disabled'><i class="fas fa-sync"></i></button>
+        </div>
+        <div id='noticePanel'>
+          <div id='notice'>
+            <span id='noticeText'  class='hidden'></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='footer'>
+        <div id='footerBlock'>
+      <div id='footerText'>
+        <p><a href="https://en.wikipedia.org/wiki/Arabic_numerals" title="Wikipedia: Arabic numerals">Arabic numerals</a>: 1 – 4999</p>
+        <p><a href="https://en.wikipedia.org/wiki/Roman_numerals" title="Wikipedia: Roman numerals">Roman numerals</a>: I V X L C D M</p>
+        <p>© 2021 <a href="https://sawczak.com" title="sawczak.com">Luke Sawczak</a></p>
+        <p>Background by <a
+            href="https://unsplash.com/@nate_dumlao"
+                            title="Nathan Dumalo on Unsplash">Nathan Dumlao</a></p>
+                            </div>
+      </div>
+    </div>
   </div>
-  <div class="footer">
-    <p>© 2013 Luke Sawczak {<a href="https://www.unfamiliarplace.com/">site</a>}   ///// 09/08/2013 ///// feedback, suggestions, &amp; bugs {<a href="mailto:luke@unfamiliarplace.com">email</a>}</p>
-    <!-- end .footer --></div>
-  <!-- end .container --></div>
+</div>
+
+
 </body>
 </html>
